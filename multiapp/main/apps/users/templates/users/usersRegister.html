@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <h1>placeholder for users to create a new user record</h1>
+        <fieldset>
+            <legend>Register</legend>
+            <form class="" action="users/login" method="post">
+                {% csrf_token %}
+                Name: <input type="text" name="name" placeholder="Name">
+                <br>
+                Last Name: <input type="text" name="last" placeholder="Last Name">
+                <br>
+                Email: <input type="text" name="email" placeholder="Email">
+                <br>
+                Password: <input type="password" name="password" placeholder="Password">
+                <br>
+                Password: <input type="password" name="confirmation" placeholder="Password">
+                <br>
+                <input type="submit" name="submit" value="Submit">
+            </form>
+        </fieldset>
+    </body>
+</html>

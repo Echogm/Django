@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static '/CSS/style.css' %}">
+        <title>Surveys</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <fieldset>
+                <form class="" action="/surveys/process" method="post">
+                    {% csrf_token %}
+                    <legend><h1>Survey</h1></legend>
+                    Your Name: <input type="text" name="name" placeholder="Name">
+                    <br>
+                    Dojo Location: <select name="location">
+                        <option value="null">Select One</option>
+                        <option value="siliconvalley">Silicon Valley</option>
+                        <option value="losangeles">Los Angeles</option>
+                        <option value="dallas">Dallas</option>
+                        <option value="dc">Washington DC</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="Tulsa">Tulsa</option>
+                    </select>
+                    <br>
+                    Favorite Language: <select name="language">
+                        <option value="null">Select One</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="python">Python</option>
+                        <option value="c">C</option>
+                        <option value="c#">C#</option>
+                        <option value="Ruby">Ruby on rails</option>
+                    </select>
+                    <br>
+                    <textarea name="comment" rows="8" cols="80"></textarea>
+                    <br>
+                    <input type="submit" name="submit" value="Submit">
+                </form>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </fieldset>
+
+            <h1>{{ request.session.name }}</h1>
+            <h2>{{ request.session.location }}</h2>
+            <h3>{{ request.session.language }}</h3>
+            <p>{{ request.session.comment }}</p>
+        </div>
+    </body>
+</html>
