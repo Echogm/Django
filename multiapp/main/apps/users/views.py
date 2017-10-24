@@ -27,7 +27,7 @@ def register(request):
                 messages.add_message(request, messages.ERROR, errors)
             return redirect("/register")
     elif request.method == 'GET':
-        return render(request, "users/usersRegister.html")
+        return render(request, "users/register.html")
 def new_session(request):
     if request.method == 'POST':
         valid = Users.userManager.login(
@@ -46,7 +46,7 @@ def new_session(request):
         return redirect("/login")
     if request.method == 'GET':
         return render(request, "users/usersLogin.html")
-    
+
     # email = request.POST.get['email']
     # password = request.POST.get['password']
     # user = authenticate(email=email, password=password)
