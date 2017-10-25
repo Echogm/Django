@@ -62,3 +62,33 @@ class Users(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     userManager = UserManager()
+
+class Trip(models.Model):
+    destination = models.CharField(max_length = 255)
+    description = models.CharField(max_length = 255)
+    travel_start_date = models.CharField(max_length = 255)
+    travel_end_date = models.CharField(max_length = 255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True)
+    creator = models.ForeignKey(Users, related_name = "travels")
+    def __repr__(self):
+        return "<Trip: {} {} {} {}".format(
+            self.destination,
+            self.description,
+            self.travel_start_date,
+            self.travel_end_date
+    )
+
+class TravelersManager(models.Manager):
+    def travelers(self, travelers, traveler, trip):
+        if len(Travelers.travelersManager.filter(traveler_id = traveler).filter(trip_id = trip)) == 0:
+            Travelers.travelersManager.create(travelers=travelers, traveler_id=traveler, trip_id = trip)
+            return True
+        else:
+            return False
+class Travelers(models.Model):
+    travelers = models.IntegerField()
+    traveler = models.ForeignKey(Users, related_name="traveler")
+    trip = models.ForeignKey(Trip, related_name="travel")
+
+    travelersManager = TravelersManager()

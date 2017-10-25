@@ -18,9 +18,12 @@ from django.contrib import admin
 from apps.users import views
 urlpatterns = [
     url(r'^', include('apps.blogs.urls')),
-    url(r'^users/', include('apps.users.urls')),
-    url(r'^surveys/', include('apps.surveys.urls')),
+    # url(r'^users/', include('apps.users.urls')),
+    # url(r'^surveys/', include('apps.surveys.urls')),
     url(r'^register$', views.register),
     url(r'^login$', views.new_session),
+    url(r'^logout$', views.logout),
+    url(r'^travels$', views.travels),
+    url(r'^addplan$', views.addplan),
     url(r'^admin/', admin.site.urls),
 ]
