@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Travels</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Hello, {{ request.session.email.name }}</h1>
+            <table class="table table-striped table-hover">
+                <h3>My table</h3>
+                <tr>
+            		<th>Destination</th>
+            		<th>Travel Start Date</th>
+            		<th>Trips End Date</th>
+            	</tr>
+                    {% for trips in trip %}
+                        <tr>
+                            <td>{{ Trip.destination }}</td>
+                            <td>{{ Trip.travel_start_date }}</td>
+                            <td>{{ Trip.travel_end_date }}</td>
+                            <td><a href="/join/{{ trip.id }}">Join</a></td>
+                        </tr>
+                    {% endfor %}
+            </table>
+            <table class="table table-striped table-hover">
+            	<tr>
+            		<th>Destination</th>
+            		<th>Travel Start Date</th>
+            		<th>Trips End Date</th>
+            	</tr>
+                {% for trips in trip %}
+                    <tr>
+                        <td>{{ trip.destination }}</td>
+                        <td>{{ trip.travel_start_date }}</td>
+                        <td>{{ trip.travel_end_date }}</td>
+                        <td><a href="/join/{{ trip.id }}">Join</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <!-- <button type="button" name="button">Add Plan</button> -->
+            <a href="/addplan">Addplan</a>
+            <a href="/logout"><button type="button" name="button">logout</button></a>
+        </div>
+    </body>
+</html>
